@@ -287,6 +287,9 @@ static void add_platform_device(const char *path)
     INFO("adding platform device %s (%s)\n", name, path);
 
     bus = (platform_node*) calloc(1, sizeof(struct platform_node));
+    if (!bus)
+        return;
+
     bus->path = strdup(path);
     bus->path_len = path_len;
     bus->name = bus->path + (name - path);

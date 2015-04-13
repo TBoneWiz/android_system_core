@@ -139,7 +139,8 @@ static int verify_table(char *signature, char *table, int table_length)
     retval = 0;
 
 out:
-    free(key);
+    if (key)
+        free(key);
     return retval;
 }
 
@@ -331,6 +332,9 @@ static int read_verity_metadata(uint64_t device_size, char *block_device, char *
 out:
     if (device != -1)
         close(device);
+
+    if (key)
+        free(key);
 
     if (retval != FS_MGR_SETUP_VERITY_SUCCESS) {
         free(*signature);

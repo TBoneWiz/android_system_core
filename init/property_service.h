@@ -31,7 +31,6 @@ extern void property_load_boot_defaults(void);
 extern void load_persist_props(void);
 extern void load_system_props(void);
 extern void start_property_service(void);
-void get_property_workspace(int *fd, int *sz);
 extern int __property_get(const char *name, char *value);
 extern int property_set(const char *name, const char *value);
 extern bool property_get_bool(const char *name, bool def_value);

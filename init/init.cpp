@@ -270,15 +270,8 @@ void service_start(struct service *svc, const char *dynamic_args)
     if (pid == 0) {
         struct socketinfo *si;
         struct svcenvinfo *ei;
-        char tmp[32];
-        int fd, sz;
 
         umask(077);
-        if (properties_initialized()) {
-            get_property_workspace(&fd, &sz);
-            snprintf(tmp, sizeof(tmp), "%d,%d", dup(fd), sz);
-            add_environment("ANDROID_PROPERTY_WORKSPACE", tmp);
-        }
 
         for (ei = svc->envvars; ei; ei = ei->next)
             add_environment(ei->name, ei->value);

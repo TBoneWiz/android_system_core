@@ -242,6 +242,7 @@ static int read_verity_metadata(uint64_t device_size, char *block_device, char *
     int protocol_version;
     int device;
     int retval = FS_MGR_SETUP_VERITY_FAIL;
+    RSAPublicKey *key = NULL;
 
     *signature = NULL;
 

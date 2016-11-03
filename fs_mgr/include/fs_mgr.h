@@ -86,7 +86,7 @@ int fs_mgr_mount_all(struct fstab *fstab);
 
 #define FS_MGR_DOMNT_FAILED -1
 #define FS_MGR_DOMNT_BUSY -2
-int fs_mgr_do_mount(struct fstab *fstab, char *n_name, char *n_blk_device,
+int fs_mgr_do_mount(struct fstab *fstab, const char *n_name, char *n_blk_device,
                     char *tmp_mount_point);
 int fs_mgr_do_tmpfs_mount(char *n_name);
 int fs_mgr_unmount_all(struct fstab *fstab);

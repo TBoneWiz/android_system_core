@@ -67,9 +67,6 @@ static void initBatteryProperties(BatteryProperties* props) {
     props->batteryLevel = 0;
     props->batteryVoltage = 0;
     props->batteryTemperature = 0;
-    props->batteryCurrent = 0;
-    props->batteryCycleCount = 0;
-    props->batteryFullCharge = 0;
     props->batteryTechnology.clear();
 }
 

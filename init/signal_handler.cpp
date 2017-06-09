@@ -22,6 +22,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include "property_service.h"
 
 #include <base/stringprintf.h>
 #include <cutils/android_reboot.h>
@@ -58,6 +59,8 @@ static bool wait_for_one_process() {
     } else if (pid == -1) {
         ERROR("waitpid failed: %s\n", strerror(errno));
         return false;
+    } else if (property_child_reap(pid)) {
+        return true;
     }
 
     service* svc = service_find_by_pid(pid);

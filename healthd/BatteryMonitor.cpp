@@ -250,6 +250,7 @@ bool BatteryMonitor::update(void) {
         mChargerNames.clear();
         while ((entry = readdir(dir))) {
             const char* name = entry->d_name;
+            char *chk = strstr(name, "sec-charger");
 
             if (!strcmp(name, ".") || !strcmp(name, ".."))
                 continue;
@@ -281,8 +282,10 @@ bool BatteryMonitor::update(void) {
                                 props.chargerWirelessOnline = true;
                                 break;
                             default:
-                                KLOG_WARNING(LOG_TAG, "%s: Unknown power supply type\n",
+                                if (chk == 0) {
+                                    KLOG_WARNING(LOG_TAG, "%s: Unknown power supply type\n",
                                              name);
+                                }
                             }
                             path.clear();
                             path.appendFormat("%s/%s/current_max", POWER_SUPPLY_SYSFS_PATH,
